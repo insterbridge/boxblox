@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A stroked check, not a font glyph: the ✓ character picks up the platform's
+  emoji/symbol fallback and renders with the wrong weight and baseline. This is
+  drawn to Material's 24dp grid with a 2dp stroke and round caps.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/bb_good"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M5,12.5 L10,17.5 L19,6.5" />
+</vector>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  One flag card, as approved in design K: label over monospace key, control on
+  the right. A changed flag gets the primary stroke; an unchanged one keeps a
+  transparent stroke of the same width so nothing shifts when it toggles.
+
+  The switch is the platform's, not androidx.appcompat's. The wrapper's appcompat
+  dependency is deliberately non-transitive and resource-only, so pulling in
+  SwitchCompat would drag AndroidX classes onto this app's class path ahead of
+  the archive's — the shadowing failure documented in build.gradle.kts.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:paddingTop="13dp"
+    android:paddingBottom="13dp"
+    android:layout_marginBottom="9dp"
+    android:background="@drawable/bb_card">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/flag_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb_on_surface"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/flag_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:background="@drawable/bb_badge"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:letterSpacing="0.05"
+                android:text="@string/desktop"
+                android:textAllCaps="true"
+                android:textColor="@color/bb_outline_variant"
+                android:textSize="8.5sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/flag_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/bb_outline_variant"
+            android:textSize="11sp"
+            android:singleLine="true"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <app.boxblox.ToggleView
+        android:id="@+id/flag_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp" />
+
+    <TextView
+        android:id="@+id/flag_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:minWidth="48dp"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:background="@drawable/bb_value_chip"
+        android:fontFamily="monospace"
+        android:textColor="@color/bb_primary"
+        android:textSize="12sp"
+        android:visibility="gone" />
+</LinearLayout>

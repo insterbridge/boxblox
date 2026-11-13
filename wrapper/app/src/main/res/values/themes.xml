@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Boxblox" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:colorBackground">@color/bb_surface</item>
+        <item name="android:windowBackground">@color/bb_surface</item>
+        <!-- The launch splash draws on windowBackground; keeping it the surface colour is what stops the white ring. -->
+        <item name="android:textColorPrimary">@color/bb_on_surface</item>
+        <item name="android:textColorSecondary">@color/bb_variant</item>
+        <item name="android:statusBarColor">@color/bb_surface</item>
+        <item name="android:navigationBarColor">@color/bb_surface</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

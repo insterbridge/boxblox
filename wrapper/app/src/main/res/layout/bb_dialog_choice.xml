@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The choice picker, in the same M3 dialog surface as the number editor:
+  title, the value's supporting line, one full-width row per offered value
+  with the selected one filled, and the single Cancel action. Tapping a row
+  both picks and closes, which is all a three-way choice needs.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bb_dialog_surface"
+    android:paddingTop="24dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textColor="@color/bb_on_surface"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/dialog_supporting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:fontFamily="monospace"
+        android:textColor="@color/bb_outline_variant"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/choice_rows"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/dialog_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/cancel"
+        android:textColor="@color/bb_primary"
+        android:textSize="14sp"
+        android:clickable="true"
+        android:focusable="true" />
+</LinearLayout>

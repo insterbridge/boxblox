@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A list of actions, not a notice: no body text and no confirm button, because
+  every row does something. The padding is tighter than bb_dialog_notice for the
+  same reason.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bb_dialog_surface"
+    android:paddingTop="22dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/chooser_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:textColor="@color/bb_on_surface"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:id="@+id/chooser_rows"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Boxblox</string>
+    <string name="launch">Launch Roblox</string>
+    <string name="overrides">overrides</string>
+    <string name="no_build">No Roblox archive installed yet.\n\nPick the base APK plus its arm64 split, or a single XAPK.</string>
+    <string name="tab_all">All</string>
+    <string name="set">Set</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+    <string name="builds">Builds</string>
+    <string name="active">Active</string>
+    <string name="desktop">desktop</string>
+    <string name="import_roblox">Import Roblox</string>
+    <string name="add_roblox">Import Roblox</string>
+    <string name="import_from_file">Choose an APK file</string>
+    <string name="import_title">Import Roblox</string>
+    <string name="import_from_device">Use the installed Roblox</string>
+    <string name="no_roblox_installed">Roblox is not installed on this device.</string>
+    <string name="import_blocked_title">Cannot import</string>
+    <string name="import_blocked_body">This APK was not supplied by Roblox, so Boxblox will not run it. Only official builds can be imported.</string>
+    <string name="ok">OK</string>
+    <string name="unsupported_build_title">Untested Roblox version</string>
+    <string name="unsupported_build_body">This is Roblox %1$s. Boxblox\'s native mouse hooks were written for %2$s, and Roblox moves the engine internals they read between releases. Everything else should work; the mouse features check themselves at launch and switch off rather than risk the wrong address.</string>
+    <string name="delete">Delete</string>
+    <string name="delete_build_title">Delete this build?</string>
+    <string name="delete_build_body">%1$s will be removed from this device, along with its unpacked files and this build\'s local cache. Your Roblox sign-in and account are kept, and re-importing the same version logs you straight back in.</string>
+    <string name="delete_last_build_body">%1$s is the only build installed, so there will be nothing left to launch until you import Roblox again. Your Roblox sign-in and account are kept.</string>
+    <string name="importing_title">Importing</string>
+    <string name="importing_body">Checking the archive and unpacking it. This takes a moment.</string>
+    <string name="deleting_title">Deleting</string>
+    <string name="deleting_body">Removing the build and its files.</string>
+</resources>

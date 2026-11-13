@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon: a solid surface-coloured background layer and the mark on top.
+
+  Without this the launcher used the legacy PNG, whose transparent corners were
+  filled with white when the splash screen scaled it up — the white ring that
+  appeared around the icon during launch. An adaptive icon has no transparent
+  corners to fill, because the background layer covers the whole canvas.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/bb_surface" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <monochrome android:drawable="@drawable/ic_launcher_monochrome" />
+</adaptive-icon>

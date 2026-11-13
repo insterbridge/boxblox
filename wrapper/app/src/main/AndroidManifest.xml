@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!--
+      Roblox's startup registers a screen-capture callback
+      (com.roblox.client.startup.NativeHelper.h0 -> gl.a.d ->
+      Activity.registerScreenCaptureCallback), which the platform refuses with
+      "Permission Denial: registerScreenCaptureObserver ... requires
+      android.permission.DETECT_SCREEN_CAPTURE" unless this is declared. It is a
+      normal permission: declaring it is enough, there is nothing to grant.
+    -->
+    <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
+    <!--
+      The archive's own permission set, copied rather than guessed. The wrapper's
+      manifest replaces the archive's, so anything the guest asks the platform
+      for has to be declared here or the call fails with a SecurityException
+      naming the permission (measured: cancelVibrate without VIBRATE).
+
+      Omitted deliberately: com.roblox.client.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      belongs to the archive's package name and cannot be declared here;
+      READ_CONTACTS/READ_EXTERNAL_STORAGE/WRITE_EXTERNAL_STORAGE and
+      samsung.mapsagent are not needed by the startup path this wrapper runs.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_TOPICS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_BASIC_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+
+    <!--
+      Pointer capture is API 26+, which is also Roblox's own floor.
+    -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.type.pc"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <!--
+      Package visibility. Android 11 hides installed packages from an app unless
+      it declares what it looks for, so getPackageInfo("com.roblox.client")
+      throws NameNotFoundException even when Roblox is installed (measured).
+      This is the declaration that makes "use installed Roblox" work.
+    -->
+    <queries>
+        <package android:name="com.roblox.client" />
+        <intent>
+            <action android:name="android.content.pm.action.REQUEST_PERMISSIONS" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".WrapperApplication"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/Theme.Boxblox">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!--
+          The guest's own engine activity, declared under this package so the
+          platform will instantiate it. Its class resolves from the archive's
+          dex, which ClassLoaderInstaller installs into this process's class
+          path before anything starts it.
+
+          `android.app.lib_name` is read by AGDK's GameActivity.onCreate, which
+          builds "lib" + name + ".so" and calls System.loadLibrary on it. That
+          resolves through the guest class loader's library search path, which
+          points at the verified build's unpacked natives.
+        -->
+        <!--
+          Required by the Google Play Services library the archive bundles: its
+          initialiser refuses to run unless this tag is present in the manifest.
+          The value is the one the archive itself declares
+          (integer/google_play_services_version = 12451000), copied rather than
+          invented so the library sees the version it was built against.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="12451000" />
+
+        <!--
+          The guest's home-screen widget provider. Roblox declares it
+          enabled="false", and its own code looks the component up by name
+          (AppWidgetManager.getAppWidgetIds) — with the component absent the
+          platform throws
+          IllegalArgumentException: Component class
+          com.roblox.client.widgets.RecentlyPlayedWidgetProvider does not exist
+          in app.boxblox (measured). It stays disabled, exactly as the
+          archive declares it, so it never actually runs; only the name has to
+          exist. The provider-info metadata is omitted because that XML resource
+          lives in the archive and this manifest cannot reference it.
+        -->
+        <receiver
+            android:name="com.roblox.client.widgets.RecentlyPlayedWidgetProvider"
+            tools:ignore="MissingClass"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+          The user-editable asset overlay, published to the system files app.
+          Exported because the system's documents UI is the client, and guarded
+          by MANAGE_DOCUMENTS, which only the system holds.
+        -->
+        <provider
+            android:name=".OverlayDocumentsProvider"
+            android:authorities="app.boxblox.overlay"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS">
+            <!--
+              How the documents UI discovers providers at all: it queries for
+              this action, and a provider without it is never asked (measured:
+              the picker listed Termux and Zilith Launcher but not this root).
+            -->
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+            </intent-filter>
+        </provider>
+
+        <activity
+            android:name="com.roblox.client.startup.MainGameActivity"
+            tools:ignore="MissingClass"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|density|uiMode"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:theme="@style/Theme.Boxblox">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="roblox" />
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Blocking progress dialog for import and preparation.
+
+  Same M3 surface as the other dialogs, but no actions: the work is not
+  cancellable once it starts, so offering Cancel would promise something the
+  app cannot honour. The bar is indeterminate because verification and
+  unpacking report no usable progress — a percentage would be invented.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bb_dialog_surface"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="26dp">
+
+    <TextView
+        android:id="@+id/progress_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bb_on_surface"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/progress_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/bb_variant"
+        android:textSize="13.5sp" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="22dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/bb_primary"
+        android:progressBackgroundTint="@color/bb_surface_4" />
+</LinearLayout>

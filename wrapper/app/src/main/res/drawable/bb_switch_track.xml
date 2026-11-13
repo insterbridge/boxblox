@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Switch track. Kept as an explicit drawable rather than a tint because the
+  platform's Switch applies its own theme tints at inflate time, which overwrote
+  the programmatic setTrackTintList (measured: every switch rendered grey).
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bb_primary" />
+            <corners android:radius="13dp" />
+            <size android:width="44dp" android:height="26dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bb_surface_4" />
+            <corners android:radius="13dp" />
+            <stroke android:width="2dp" android:color="@color/bb_outline_variant" />
+            <size android:width="44dp" android:height="26dp" />
+        </shape>
+    </item>
+</selector>

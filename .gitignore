@@ -1,0 +1,24 @@
+# Reference-runtime clones (nested git repos, ~200MB) — read-only research.
+research/
+
+# Vendored Roblox archives (base APK + ABI split, ~400MB).
+apk/
+
+# Gradle / Android build output.
+.gradle/
+build/
+app/build/
+.cxx/
+.externalNativeBuild/
+local.properties
+*.iml
+.idea/
+captures/
+
+# Host-side analysis artifacts live in /tmp, not the repo.
+
+# Engine binaries pulled from the device for offset recovery (~107MB each).
+.analysis/
+
+# Androguard session database (regenerated per analysis run).
+androguard.db*

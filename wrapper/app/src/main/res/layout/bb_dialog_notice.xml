@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- M3 notice dialog, matching the app's surface and palette. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bb_dialog_surface"
+    android:paddingTop="24dp"
+    android:paddingBottom="14dp">
+
+    <TextView
+        android:id="@+id/notice_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textColor="@color/bb_on_surface"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/notice_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/bb_variant"
+        android:textSize="13.5sp" />
+
+    <TextView
+        android:id="@+id/notice_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/ok"
+        android:textColor="@color/bb_primary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true" />
+</LinearLayout>

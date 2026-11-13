@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Boxblox's palette, transcribed from the approved design K.
+
+      These are plain colours rather than Material 3 dynamic colour on purpose:
+      the app's whole look was signed off as a specific dark scheme, and
+      wallpaper-derived colour would make the approved design and the shipped
+      app different things.
+    -->
+    <color name="bb_surface">#141218</color>
+    <color name="bb_surface_1">#1D1B20</color>
+    <color name="bb_surface_2">#211F26</color>
+    <color name="bb_surface_3">#2B2930</color>
+    <color name="bb_surface_4">#36343B</color>
+
+    <color name="bb_on_surface">#E6E0E9</color>
+    <color name="bb_variant">#CAC4D0</color>
+    <color name="bb_outline">#49454F</color>
+    <color name="bb_outline_variant">#938F99</color>
+
+    <color name="bb_primary">#D0BCFF</color>
+    <color name="bb_on_primary">#381E72</color>
+    <color name="bb_primary_container">#4F378B</color>
+    <color name="bb_on_primary_container">#EADDFF</color>
+
+    <color name="bb_secondary_container">#4A4458</color>
+    <color name="bb_on_secondary_container">#E8DEF8</color>
+
+    <color name="bb_good">#B5CC8A</color>
+
+    <!-- Destructive actions only: M3's error tone, kept to one use. -->
+    <color name="bb_error">#F2B8B5</color>
+
+    <!-- The notch inside the launch button: primary darkened toward on-primary. -->
+    <color name="bb_notch">#A98BE8</color>
+    <color name="bb_launch_icon_bg">#A98BE8</color>
+</resources>
